@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from pydantic_core import core_schema
 from typing import Any
 from pathlib import Path
+# from pymongo import MongoClient
 import os
 
 # from bson import ObjectId
@@ -20,6 +21,8 @@ if not MONGODB_URL:
     raise ValueError("La variable MONGODB_URL n'est pas définie dans .env")
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGODB_URL"))
+# client = MongoClient(MONGODB_URL)
+# print(client.server_info())  # Doit afficher les infos du cluster
 db = client.blogapi
 
 # BSON and fastapi JSON
